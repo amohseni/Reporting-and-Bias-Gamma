@@ -1,0 +1,31 @@
+Possible sources of disagreement b/w Jim & Aydin's data
+
+Hyperbole 
++ Order of application of reporting biases
++ Priors? Wash out? I use Gamma prior.
+
+Checked for both of ours.
+
+-1	0
+-1.56	-1.18
+
+1	0
+1.57	1.18
+
+
+1	0	1	1	1	1
+0.00	-0.30
+
+-1	0	1	1	1	1	
+0.21	0.28
+
+
+HYPERBOLE
+EXTERMITY BIAS
+OPTIONAL + FAIR AND BALANCED
+
++ Run a check on do they exhaust their data.
+
++ Most difference is in, 
+
++ , then we should check if there is more disagreement.

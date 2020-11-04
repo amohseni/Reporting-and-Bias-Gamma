@@ -12,7 +12,7 @@ getwd()
 
 # Determine parameter values to test
 SampleSpace <- seq(from = -10, to = 10, by = 0.1) # The sample space of possible states true state of the world
-Runs <- 100 # The number of runs of the simulation
+Runs <- 1000 # The number of runs of the simulation
 TrueStateSD <- 1 # The true mean of the world
 TrueStateMeanVEC <- seq(from = -1, to = 1, by = 1)
 InitialBeliefVEC <- seq(from = -1, to = 1, by = 1)
@@ -25,7 +25,7 @@ QuantityOfEvidence <- 3
 # Calculate the number of distinct parameter settings required
 TotalNumberOfCases <-
   length(TrueStateMeanVEC) * length(InitialBeliefVEC) * length(BiasStrengthVEC) * length(ExtermityBiasVEC) * length(HyperboleVEC) * length(FairAndBalancedVEC)
-SampleSize <- 10 ^ (QuantityOfEvidence + 3)
+SampleSize <- 10 ^ (QuantityOfEvidence + 2)
 
 # Create the data frame in which to save the data
 Df <- data.frame(matrix(
@@ -127,7 +127,7 @@ for (i in 1:TotalNumberOfCases) {
     # Get data x_i | µ, τ ∼ N (µ, τ ) i.i.d.
     x_bar <- report
     # Compute posterior distiributions parameters
-    # First, precision τ | x ∼ Ga (α + n / 2, β + Σ (x_i − x_bar)^2 + (x_bar − µ_0)^2 * nn0 / 2(n + n0))
+    # First, precision τ | x ∼ Ga (α + n / 2, β + (Σ (x_i − x_bar)^2) / 2 + (x_bar − µ_0)^2 * n * n0 / 2(n + n0))
     # where now n = 1
     alpha_post <- alpha + 1 / 2
     beta_post <-
@@ -159,8 +159,8 @@ for (i in 1:TotalNumberOfCases) {
     # First, set the initial values for the agent's beliefs.
     # The initial precision of the agent's prior of  τ ∼ Ga(α, β)
     priorSD <- TrueStateSD
-    alpha <- 10 ^ -1
-    beta <- 10 ^ -1
+    alpha <- 2
+    beta <- 1
     # The initial mean of the agent's prior µ ~ N(µ_0, τn_0)
     priorMean <- InitialBelief
     

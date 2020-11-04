@@ -86,7 +86,7 @@ shinyServer(function(input, output, session) {
       # Get data x_i | µ, τ ∼ N (µ, τ ) i.i.d.
       x_bar <- report
       # Compute posterior distiributions parameters
-      # First, precision τ | x ∼ Ga (α + n / 2, β + Σ (x_i − x_bar)^2 + (x_bar − µ_0)^2 * nn0 / 2(n + n0))
+      # First, precision τ | x ∼ Ga (α + n / 2, β + (Σ (x_i − x_bar)^2) / 2 + (x_bar − µ_0)^2 * n * n0 / 2(n + n0))
       # where now n = 1
       alpha_post <- alpha + 1 / 2
       beta_post <-
@@ -141,8 +141,8 @@ shinyServer(function(input, output, session) {
         n_0 <- 1
         # mu_0 <- 1
         # The precision of the prior of agents τ ∼ Ga(α, β)
-        alpha <- 10 ^ -1
-        beta <- 10 ^ -1
+        alpha <- 2
+        beta <- 1
       }
       
       # Increment the count for pieces of evidence considered
